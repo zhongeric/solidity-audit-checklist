@@ -13,6 +13,9 @@ ERC-777 tokens contain the hook `_callTokensReceived` which transfers control to
 ## Yield aggregation
 
 ### Users can transfer accounting tokens between accounts to exploit yield claimed
+If the `_beforeTokenTransfer()` is not correctly implemented (the protocol is using a custom staking module compared to Convex's), and the `_checkpoint` is not updated correctly, the protocol will not account for transfers between users.
+
+Example: [Yield Protocol](https://github.com/code-423n4/2022-01-yield-findings/issues/86)
 
 ## NFT collections
 
