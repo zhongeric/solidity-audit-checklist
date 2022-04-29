@@ -26,6 +26,9 @@ Example: [Yield Protocol](https://github.com/code-423n4/2022-01-yield-findings/i
 ### Low level calls
 `delegateCall` preserves msg.sender & context, while `call` does not.
 
+### Validating Chainlink oracle feeds
+When using Chainlink Price feeds it is important to ensure the price feed data was updated recently. While getting started with chainlink requires just one line of code, it is best to add additional checks for in production environments.
+
 # Assorted tips
 
 Inconsistent use of `safeTransfer` and `transfer` for ERC721 may warrant Medium risk. [See here](https://github.com/code-423n4/2022-04-backed-findings/issues/81#issuecomment-1100560835)
