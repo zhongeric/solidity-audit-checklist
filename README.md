@@ -9,3 +9,8 @@ ERC-777 tokens contain the hook `_callTokensReceived` which transfers control to
 
 ## Low level calls
 `delegateCall` preserves msg.sender & context, while `call` does not.
+
+
+# Assorted tips
+
+Inconsistent use of `safeTransfer` and `transfer` for ERC721 may warrant Medium risk. [See here](https://github.com/code-423n4/2022-04-backed-findings/issues/81#issuecomment-1100560835)
