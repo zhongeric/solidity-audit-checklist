@@ -23,8 +23,11 @@ Example: [Yield Protocol](https://github.com/code-423n4/2022-01-yield-findings/i
 
 ## Misc
 
-### Low level calls
+### Low level calls & msg.sender, context
 `delegateCall` preserves msg.sender & context, while `call` does not.
+
+### Does not check existence of target account for low-level call
+According to the Solidity docs), “The low-level functions call, delegatecall and staticcall return true as their first return value if the account called is non-existent, as part of the design of the EVM. Account existence must be checked prior to calling if needed”.
 
 ### Transfer may be unusable by some smart contract users
 It only forwards 2300 gas, and since gas prices can change in the future for ETH, for a smart contract that does not implement the fallback function or one that requires more than 2300 to receive the native token, it will always fail. Pay attention to use of this with `WETH`, namely `WETH.withdraw` beforehand, and when it is used in critical logic - withdrawing collateral, etc..
