@@ -26,7 +26,7 @@ Example: [Yield Protocol](https://github.com/code-423n4/2022-01-yield-findings/i
 ### Low level calls & msg.sender, context
 `delegateCall` preserves msg.sender & context, while `call` does not.
 
-### Does not check existence of target account for low-level call
+### Not checking existence of target account for low-level call will lead to silent failure
 According to the Solidity docs), “The low-level functions call, delegatecall and staticcall return true as their first return value if the account called is non-existent, as part of the design of the EVM. Account existence must be checked prior to calling if needed”.
 
 ### Transfer may be unusable by some smart contract users
