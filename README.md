@@ -26,6 +26,9 @@ Example: [Yield Protocol](https://github.com/code-423n4/2022-01-yield-findings/i
 ### Low level calls
 `delegateCall` preserves msg.sender & context, while `call` does not.
 
+### Transfer may be unusable by some smart contract users
+It only forwards 2300 gas, and since gas prices can change in the future for ETH, for a smart contract that does not implement the fallback function or one that requires more than 2300 to receive the native token, it will always fail. Pay attention to use of this with `WETH`, namely `WETH.withdraw` beforehand, and when it is used in critical logic - withdrawing collateral, etc..
+
 ### Validating Chainlink oracle feeds
 When using Chainlink Price feeds it is important to ensure the price feed data was updated recently. While getting started with chainlink requires just one line of code, it is best to add additional checks for in production environments.
 
