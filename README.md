@@ -18,6 +18,7 @@ If the `_beforeTokenTransfer()` is not correctly implemented (the protocol is us
 Example: [Yield Protocol](https://github.com/code-423n4/2022-01-yield-findings/issues/86)
 
 ## NFT collections
+`safeMint` opens up re-entrancy where attackers can mint more than allowed
 
 ## Stablecoins
 
