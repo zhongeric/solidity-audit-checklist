@@ -34,7 +34,15 @@ According to the Solidity docs), “The low-level functions call, delegatecall a
 It only forwards 2300 gas, and since gas prices can change in the future for ETH, for a smart contract that does not implement the fallback function or one that requires more than 2300 to receive the native token, it will always fail. Pay attention to use of this with `WETH`, namely `WETH.withdraw` beforehand, and when it is used in critical logic - withdrawing collateral, etc..
 
 ### Validating Chainlink oracle feeds
-When using Chainlink Price feeds it is important to ensure the price feed data was updated recently. While getting started with chainlink requires just one line of code, it is best to add additional checks for in production environments.
+When using Chainlink Price feeds it is important to ensure the price feed data was updated recently. While getting started with chainlink requires just one line of code, it is best to add additional checks for in production environments. [Reference example](https://github.com/code-423n4/2022-01-yield-findings/issues/136)
+
+Example validation:
+```solidity
+        (uint80 roundID, int256 usdcPrice, , uint256 timestamp, uint80 answeredInRound) = ChainlinkFeed(0x986b5E1e1755e3C2440e960477f25201B0a8bbD4).latestRoundData();
+        require(usdcPrice > 0, "ChainLink: price <= 0");
+        require(answeredInRound >= roundID, "ChainLink: Stale price");
+        require(timestamp != 0, "ChainLink: Round not complete");
+```
 
 # Assorted tips
 
