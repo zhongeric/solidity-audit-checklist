@@ -1,7 +1,18 @@
 # solidity-audit-checklist
 
 # By project type
-## Lending markets (OTC)
+
+[OTC lending markets](#otc-lending-markets)
+
+[Yield aggregators](#yield-aggregators)
+
+[NFT collections](#nft-collections)
+
+[Stablecoins](#stablecoins)
+
+[Misc](#misc)
+
+## OTC Lending markets
 
 ### ERC-777 are backwards compatible with ERC-20 and can be used without implementing their interface
 ERC-777 tokens contain the hook `_callTokensReceived` which transfers control to the receiver when tokens are transferred to them.
@@ -10,7 +21,7 @@ ERC-777 tokens contain the hook `_callTokensReceived` which transfers control to
 1. DoS by always reverting when receiving tokens (critical issue if function relies on an account receiving tokens (loan buyout, repayment, batch payment, etc.)).
 2. Allows re-entry
 
-## Yield aggregation
+## Yield aggregators
 
 ### Users can transfer accounting tokens between accounts to exploit yield claimed
 If the `_beforeTokenTransfer()` is not correctly implemented (the protocol is using a custom staking module compared to Convex's), and the `_checkpoint` is not updated correctly, the protocol will not account for transfers between users.
