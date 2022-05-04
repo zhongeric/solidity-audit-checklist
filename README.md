@@ -55,6 +55,9 @@ Example validation:
         require(timestamp != 0, "ChainLink: Round not complete");
 ```
 
+### erecover may fail silently, returning 0 if the signature is invalid
+Reference [issue](https://github.com/code-423n4/2021-04-meebits-findings/issues/77)
+
 # Assorted tips
 
 Inconsistent use of `safeTransfer` and `transfer` for ERC721 may warrant Medium risk. [See here](https://github.com/code-423n4/2022-04-backed-findings/issues/81#issuecomment-1100560835)
