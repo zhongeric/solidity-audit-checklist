@@ -57,6 +57,11 @@ Example validation:
         require(timestamp != 0, "ChainLink: Round not complete");
 ```
 
+### UniswapV3 TWAP logic
+
+### ERC20 token approvals
+Not setting the approval to 0 before approving an amount for an ERC20 may cause it to fail for non standard tokens like USDT (Tether). Consider using OZ's SafeERC20's `safeTransfer()` instead. [Reference issue](https://github.com/code-423n4/2022-04-dualityfocus-findings/issues/39)
+
 ### erecover may fail silently, returning 0 if the signature is invalid
 Reference [issue](https://github.com/code-423n4/2021-04-meebits-findings/issues/77)
 
